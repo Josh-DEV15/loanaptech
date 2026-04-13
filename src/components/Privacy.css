@@ -1,0 +1,89 @@
+/* 🔒 Force layout reset inside this component */
+.privacy-container section {
+  display: block !important;
+}
+
+.privacy-container ul {
+  display: block !important;
+}
+
+.privacy-container li {
+  display: list-item !important;
+}
+
+.privacy-container p,
+.privacy-container h1,
+.privacy-container h2 {
+  margin: 0;
+}
+
+/* Container */
+.privacy-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 30px auto;
+  padding: 25px 30px;
+
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c2c2c;
+}
+
+/* Title */
+.privacy-container h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: #1f1f1f;
+}
+
+/* Last updated */
+.privacy-container .last-updated {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 16px;
+}
+
+/* Sections (reduced spacing) */
+.privacy-container section {
+  margin-bottom: 12px;
+}
+
+/* Section headings */
+.privacy-container section h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #1f1f1f;
+}
+
+/* Paragraphs (flush left, tighter) */
+.privacy-container section p {
+  font-size: 13.8px;
+  line-height: 1.5;
+  margin: 0;
+  padding-left: 0; /* 🔥 ensures no indent */
+  text-align: left;
+  color: #444;
+}
+
+/* Lists (reduced indent + tighter spacing) */
+.privacy-container section ul {
+  margin-top: 4px;
+  padding-left: 16px; /* slightly reduced */
+}
+
+.privacy-container section ul li {
+  font-size: 13.8px;
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+
+/* Divider (lighter + closer) */
+.privacy-container section:not(:last-child) {
+  border-bottom: 1px solid #f7f7f7;
+  padding-bottom: 8px;
+}
