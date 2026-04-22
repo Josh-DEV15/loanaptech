@@ -7,7 +7,7 @@ function Faq() {
             <div className="faq-container">
                 <h1>Frequently Asked Questions (FAQ)</h1>
                 <div className="faq-subtitle">
-                    <p>Find answers to common questions about our services.</p>
+                    <p>Find answers to common questions about our services.</p> 
                 </div>  
                 <div className="faq-list">
                     <details className="faq-item">

@@ -70,8 +70,9 @@ const SignUp = () => {
 
     return (
         <div className="auth-container">
-            <h2>Sign Up</h2>
+            <h2>Create your Account</h2> 
             <form onSubmit={handleSubmit}>
+            {error && <div className="error-message">{error}</div>}
                 <input
                     type="text"
                     name="name"
