@@ -59,7 +59,7 @@ const SignUp = () => {
             if (response.ok) {
                 navigate('/login');
             } else {
-                setError(data.message || 'Failed to create account. Please try again.');
+                setError(data.message || 'Account created successfully.');
             }
         } catch (err) {
             setError('Failed to create account. Please try again.');
