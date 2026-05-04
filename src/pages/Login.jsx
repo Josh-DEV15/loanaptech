@@ -30,7 +30,7 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const response = await fetch('https://loanaptech-ten.vercel.app/login', {
+            const response = await fetch('https://loanaptech-ten.vercel.app/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
