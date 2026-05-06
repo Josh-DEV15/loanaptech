@@ -9,16 +9,13 @@ function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isActive = (path) => location.pathname === path;
-
   useEffect(() => {
-
     checkAuth();
   }, [location]); 
 
   const checkAuth = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/auth/me", {
+      const response = await fetch("https://loanaptech-ten.vercel.app/api/auth/me", {
         credentials: "include"
       });
 
@@ -30,14 +27,16 @@ function Navbar() {
       }
     } catch (error) {
       setUser(null);
-    }
+     } finally {
+        setLoading(false);
+      }
   };
 
   const isActive = (path) => location.pathname === path;
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:5000/api/auth/logout", {
+      await fetch("https://loanaptech-ten.vercel.app/api/auth/logout", {
         method: "POST",
         credentials: "include"
       });
