@@ -5,9 +5,11 @@ import "./Navbar.css";
 function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
-
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const isActive = (path) => location.pathname === path;
 
   useEffect(() => {
 
