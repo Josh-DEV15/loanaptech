@@ -30,7 +30,7 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const response = await fetch('https://loanaptech-ten.vercel.app/api/auth/login', {
+            const response = await fetch('https://loanaptech.onrender.com/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ const Login = () => {
             if (response.ok) {
                 navigate('/dashboard');
             } else {
-                setError(data.message || 'Login failed. Please try again.');
+                setError(data.error || 'Login failed. Please try again.');
             }
         } catch (err) {
             setError('An error occurred. Please try again later.');

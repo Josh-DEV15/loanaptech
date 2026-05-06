@@ -42,7 +42,7 @@ export default function SignUp() {
         setLoading(true);
 
         try {
-            const response = await fetch('https://loanaptech-ten.vercel.app/api/auth/register', {
+            const response = await fetch('https://loanaptech.onrender.com/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -59,7 +59,7 @@ export default function SignUp() {
             if (response.ok) {
                 navigate('/login');
             } else {
-                setError(data.message || 'Account created successfully.');
+                setError(data.error || 'Signup failed.');
             }
         } catch (err) {
             setError('Failed to create account. Please try again.');

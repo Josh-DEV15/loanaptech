@@ -15,7 +15,7 @@ function Navbar() {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch("https://loanaptech-ten.vercel.app/api/auth/me", {
+      const response = await fetch("https://loanaptech.onrender.com/api/auth/me", {
         credentials: "include"
       });
 
@@ -36,7 +36,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await fetch("https://loanaptech-ten.vercel.app/api/auth/logout", {
+      await fetch("https://loanaptech.onrender.com/api/auth/logout", {
         method: "POST",
         credentials: "include"
       });
