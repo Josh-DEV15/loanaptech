@@ -12,7 +12,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://loanaptech-ten.vercel.app"
+    "https://loanaptech.onrender.com"
   ],
   credentials: true
 }));
