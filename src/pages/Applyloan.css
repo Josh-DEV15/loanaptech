@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.apply-loan-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.95),
+      rgba(30, 41, 59, 0.92)
+    ),
+    url("https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1400&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  padding: 40px 20px;
+}
+
+.apply-loan-form {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.35);
+  color: white;
+  animation: fadeIn 0.5s ease;
+}
+
+.apply-loan-container h1 {
+  position: absolute;
+  top: 60px;
+  color: white;
+  font-size: 2.7rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
+.apply-loan-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+.apply-loan-form input {
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.apply-loan-form input::placeholder {
+  color: rgba(255,255,255,0.45);
+}
+
+.apply-loan-form input:focus {
+  border-color: #38bdf8;
+  box-shadow:
+    0 0 0 4px rgba(56, 189, 248, 0.18);
+  transform: translateY(-2px);
+}
+
+.apply-loan-form button {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    #0ea5e9,
+    #2563eb
+  );
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.apply-loan-form button:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 24px rgba(37, 99, 235, 0.35);
+}
+
+.apply-loan-form button:active {
+  transform: scale(0.98);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .apply-loan-form {
+    padding: 28px 22px;
+  }
+
+  .apply-loan-container h1 {
+    font-size: 2rem;
+    top: 30px;
+  }
+}
