@@ -12,6 +12,8 @@ import Faq from './components/Faq';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import ApplyLoan from './pages/Applyloan';
+import LoanDetails from './pages/LoanDetails';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/signup" element={<SignUp/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/apply" element={<ApplyLoan />} />
+          <Route path="/loans/:id" element={<LoanDetails />} />
         </Routes>
 
 
