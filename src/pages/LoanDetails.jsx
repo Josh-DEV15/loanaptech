@@ -4,6 +4,7 @@ import "./LoanDetails.css";
 
 function LoanDetails() {
   const { id } = useParams();
+
   const [loan, setLoan] = useState(null);
   const [error, setError] = useState("");
 
@@ -13,14 +14,22 @@ function LoanDetails() {
 
   const fetchLoan = async () => {
     try {
-      const res = await fetch(`https://loanaptech.onrender.com/api/loans/${id}`, {
-        credentials: "include",
-      });
+      const res = await fetch(
+        `https://loanaptech.onrender.com/api/loans/${id}`,
+        {
+          credentials: "include",
+        }
+      );
+
       const data = await res.json();
+
       if (!res.ok) {
         setError(data.error || "Loan not found");
         return;
       }
+
+      console.log("Loan Data:", data);
+
       setLoan(data.loan);
     } catch (err) {
       console.error(err);
@@ -28,15 +37,27 @@ function LoanDetails() {
     }
   };
 
-  const formatAmount = (amount) =>
-    new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 })
+  const formatAmount = (amount) => {
+    if (!amount) return "₦0";
+
+    return new Intl.NumberFormat("en-NG", {
+      style: "currency",
+      currency: "NGN",
+      maximumFractionDigits: 0,
+    })
       .format(amount)
       .replace("NGN", "₦");
+  };
 
-  const formatDate = (dateStr) =>
-    new Date(dateStr).toLocaleDateString("en-NG", {
-      day: "numeric", month: "long", year: "numeric",
+  const formatDate = (dateStr) => {
+    if (!dateStr) return "N/A";
+
+    return new Date(dateStr).toLocaleDateString("en-NG", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     });
+  };
 
   if (error) {
     return (
@@ -44,7 +65,10 @@ function LoanDetails() {
         <div className="notfound-card">
           <h2>Loan Not Found</h2>
           <p>{error}</p>
-          <Link to="/dashboard" className="notfound-btn">Back to Dashboard</Link>
+
+          <Link to="/dashboard" className="notfound-btn">
+            Back to Dashboard
+          </Link>
         </div>
       </div>
     );
@@ -61,8 +85,21 @@ function LoanDetails() {
     );
   }
 
-  const statusClass = loan.status === "approved" ? "approved" : loan.status === "rejected" ? "rejected" : "";
-  const statusEmoji = loan.status === "approved" ? "✓" : loan.status === "rejected" ? "✕" : "⏳";
+  const loanStatus = loan?.status || "pending";
+
+  const statusClass =
+    loanStatus === "approved"
+      ? "approved"
+      : loanStatus === "rejected"
+      ? "rejected"
+      : "";
+
+  const statusEmoji =
+    loanStatus === "approved"
+      ? "✓"
+      : loanStatus === "rejected"
+      ? "✕"
+      : "⏳";
 
   return (
     <div className="details-container">
@@ -71,68 +108,102 @@ function LoanDetails() {
         {/* Header */}
         <div className={`details-header ${statusClass}`}>
           <h1>Loan Application</h1>
+
           <div className="status-badge">
-            {statusEmoji} {loan.status.charAt(0).toUpperCase() + loan.status.slice(1)}
+            {statusEmoji}{" "}
+            {loanStatus.charAt(0).toUpperCase() + loanStatus.slice(1)}
           </div>
         </div>
-        
 
         {/* Loan ID */}
         <div className="details-id">
-          Loan Reference <span className="id-number">#{loan._id.slice(-8).toUpperCase()}</span>
+          Loan Reference{" "}
+          <span className="id-number">
+            #{loan?._id?.slice(-8).toUpperCase()}
+          </span>
         </div>
+
+        {/* Debug */}
+        {/* Remove later */}
+        <pre style={{ color: "white", padding: "20px" }}>
+          {JSON.stringify(loan, null, 2)}
+        </pre>
 
         {/* Details Grid */}
         <div className="details-grid">
+
           <div className="detail-item">
             <span className="detail-label">Loan Amount</span>
-            <span className="detail-value detail-amount">{formatAmount(loan.amount)}</span>
+
+            <span className="detail-value detail-amount">
+              {formatAmount(loan.amount)}
+            </span>
           </div>
 
           <div className="detail-item">
             <span className="detail-label">Duration</span>
-            <span className="detail-value">{loan.duration} months</span>
+
+            <span className="detail-value">
+              {loan.duration || loan.tenure || 0} months
+            </span>
           </div>
 
           <div className="detail-item">
             <span className="detail-label">Monthly Payment</span>
-            <span className="detail-value">{formatAmount(loan.monthlyPayment)}</span>
+
+            <span className="detail-value">
+              {formatAmount(loan.monthlyPayment)}
+            </span>
           </div>
 
           <div className="detail-item">
             <span className="detail-label">Total Repayment</span>
-            <span className="detail-value">{formatAmount(loan.totalPayment)}</span>
+
+            <span className="detail-value">
+              {formatAmount(loan.totalPayment)}
+            </span>
           </div>
 
           {loan.interestRate && (
             <div className="detail-item">
               <span className="detail-label">Interest Rate</span>
-              <span className="detail-value">{loan.interestRate}% p.a.</span>
+
+              <span className="detail-value">
+                {loan.interestRate}% p.a.
+              </span>
             </div>
           )}
 
-          {loan.createdAt && (
-            <div className="detail-item details-date">
-              <span className="detail-label">Date Applied</span>
-              <span className="detail-value">{formatDate(loan.createdAt)}</span>
-            </div>
-          )}
+          <div className="detail-item details-date">
+            <span className="detail-label">Date Applied</span>
+
+            <span className="detail-value">
+              {formatDate(loan.createdAt)}
+            </span>
+          </div>
         </div>
 
         {/* Purpose */}
         {loan.purpose && (
           <div className="details-section">
             <span className="detail-label">Purpose</span>
-            <p className="details-text">{loan.purpose}</p>
+
+            <p className="details-text">
+              {loan.purpose}
+            </p>
           </div>
         )}
 
         {/* Actions */}
         <div className="details-actions">
-          <Link to="/dashboard" className="btn-dashboard">Back to Dashboard</Link>
-          <Link to="/apply" className="btn-secondary">Apply for Another</Link>
-        </div>
+          <Link to="/dashboard" className="btn-dashboard">
+            Back to Dashboard
+          </Link>
 
+          <Link to="/apply" className="btn-secondary">
+            Apply for Another
+          </Link>
+        </div>
       </div>
     </div>
   );
