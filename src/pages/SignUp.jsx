@@ -49,14 +49,14 @@ export default function SignUp() {
                 },
                 credentials: 'include',
                 body: JSON.stringify({
-                    name: formData.name,
+                    name: formData.name, 
                     email: formData.email,
                     phone: formData.phone,
                     password: formData.password
                 })
             });
             const data = await response.json();
-            if (response.ok) {
+            if (response.ok) { 
                 navigate('/login');
             } else {
                 setError(data.error || 'Signup failed.');

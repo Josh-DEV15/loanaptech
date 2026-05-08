@@ -10,10 +10,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://loanaptech.onrender.com"
-  ],
+  origin: "https://loanaptech-ten.vercel.app",
   credentials: true
 }));
 
